@@ -7,5 +7,6 @@ public class Main {
 	Main() {
 		System.out.println("Test Push");
 		System.out.println("Test Push 2");
+		System.out.println("Test Michael Push");
 	}
 }
