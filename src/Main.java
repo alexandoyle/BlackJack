@@ -129,7 +129,6 @@ public class Main {
 								calc.setMoney(balance);
 								numTurnsSimulated += calc.getNumTurns();
 								
-					
 							}
 							
 							//Increase Number of Rounds simulated tracker
