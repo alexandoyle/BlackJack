@@ -11,7 +11,7 @@ public class Main {
 		System.out.println("Test Michael Pull");
 		
 		Calculator calc = new Calculator(10, 1000, 3, .40);
-		System.out.println(calc.maxTurns());
+		calc.runRound(5);
 		
 	}
 }

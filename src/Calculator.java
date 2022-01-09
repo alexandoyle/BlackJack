@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.util.Random;
 
 public class Calculator 
 {
@@ -113,6 +114,47 @@ public class Calculator
 			}
 		}
 		return i-1;
+	}
+	
+	public void runRound(int t)
+	{
+		int bet = minimumBet;
+		int netEarnings = 0;
+		int turn = 1;
+		
+		while(turn <= t && bet <= money)
+		{
+			if(odds >= Math.random())
+			{
+				// Win!
+				System.out.println("Turn " + turn + ": Won $" + bet + ". Round over.");
+				money += bet;
+				netEarnings += bet;
+				turn++;
+				break;
+			}
+			else
+			{
+				// Loss.
+				System.out.println("Turn " + turn + ": Lost $" + bet);
+				money -= bet;
+				netEarnings -= bet;
+				bet *= multiplier;
+				turn++;
+			}
+		}
+		if(bet > money)
+		{
+			System.out.println("Not enough money for the next turn! Round over.");
+		}
+		else if(turn > t)
+		{
+			System.out.println("Out of turns! Round over.");
+		}
+		System.out.println("Final stats:");
+		System.out.println("\tNumber of turns: " + (turn - 1));
+		System.out.println("\tMoney remaining: $" + money);
+		System.out.println("\tNet earnings: $" + netEarnings);
 	}
 	
 }
