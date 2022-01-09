@@ -9,6 +9,9 @@ public class Main {
 	public static void main(String[] args) throws IOException {new Main();}
 
 	Main() throws IOException {
+		//Calculate Run Time
+		long start = System.currentTimeMillis();;
+		
 		
 		ReaderWriter rw = new ReaderWriter("test.txt");
 		rw.clearFile();
@@ -17,7 +20,7 @@ public class Main {
 //**    USER  INPUT  VARIABLES             **
 //*******************************************
 		double oddsOfWinning	= .4222;
-		int startingBalance	 	= 10000000;
+		int startingBalance	 	= 100000;
 		int minimumBet 			= 10;
 		int numGames 			= 10000;
 
@@ -30,6 +33,7 @@ public class Main {
 		int balance 			= 0;
 		int numGamesSimulated 	= 0;
 		int numRoundsSimulated	= 0;
+		int numTurnsSimulated	= 0;
 		
 		double totalNet 		= 0;
 		double multiplier 		= .9;
@@ -123,6 +127,7 @@ public class Main {
 								//Update balance based on winnings/loss
 								balance = calc.runRound(maxTurns);
 								calc.setMoney(balance);
+								numTurnsSimulated += calc.getNumTurns();
 								
 					
 							}
@@ -163,8 +168,21 @@ public class Main {
 		commas.setGroupingUsed(true); 
 		commas.setGroupingSize(3);
 		System.out.println();
-		System.out.println("Number of full games simulated: " + commas.format(numGamesSimulated));
-		System.out.println("Number of Rounds simulated: " + commas.format(numRoundsSimulated));
+		System.out.println("Full Games Simulated: " + commas.format(numGamesSimulated));
+		System.out.println("Rounds simulated:     " + commas.format(numRoundsSimulated));
+		System.out.println("Turns simulated:      " + commas.format(numTurnsSimulated));
 		System.out.println();
+		
+		//Calculate & Print Program Execution Time
+		long end = System.currentTimeMillis();;
+		long milliseconds = end - start;
+		long minutes = (milliseconds / 1000) / 60;
+		long seconds = (milliseconds / 1000) % 60;
+		milliseconds = milliseconds - (minutes * 60000) - (seconds * 1000);
+		
+		System.out.print("Program Execution Time: ");
+		System.out.printf("%02d", minutes);
+		System.out.println(":" + seconds + ":" + milliseconds);
+
 	}
 }

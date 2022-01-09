@@ -8,6 +8,8 @@ public class Calculator
 	double multiplier;
 	double odds;
 	
+	int numTurns;
+	
 	public Calculator(int mb, int m, double mult, double o)
 	{
 		minimumBet = mb;
@@ -36,6 +38,11 @@ public class Calculator
 		return odds;
 	}
 	
+	public int getNumTurns()
+	{
+		return numTurns;
+	}
+	
 	public void setMinBet(int x)
 	{
 		minimumBet = x;
@@ -59,6 +66,11 @@ public class Calculator
 	public void setOdds(double x)
 	{
 		odds = x;
+	}
+	
+	public void addNumTurns()
+	{
+		numTurns--;
 	}
 	
 	public double oddsForTurn(int t)
@@ -124,6 +136,7 @@ public class Calculator
 		
 		while(turn <= t && bet <= money)
 		{
+			addNumTurns();
 			if(odds >= Math.random())
 			{
 				// Win!
