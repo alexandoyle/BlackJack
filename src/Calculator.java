@@ -101,22 +101,22 @@ public class Calculator
 		while(sum <= money)
 		{
 			++i;
-			System.out.println(i);
+			//System.out.println(i);
 			if(i == 1)
 			{
 				sum = minimumBet;
-				System.out.println(sum);
+				//System.out.println(sum);
 			}
 			else
 			{
 				sum += minimumBet * Math.pow(multiplier, i-1);
-				System.out.println(sum);
+				//System.out.println(sum);
 			}
 		}
 		return i-1;
 	}
 	
-	public void runRound(int t)
+	public int runRound(int t)
 	{
 		int bet = minimumBet;
 		int netEarnings = 0;
@@ -127,7 +127,7 @@ public class Calculator
 			if(odds >= Math.random())
 			{
 				// Win!
-				System.out.println("Turn " + turn + ": Won $" + bet + ". Round over.");
+				//System.out.println("Turn " + turn + ": Won $" + bet + ". Round over.");
 				money += bet;
 				netEarnings += bet;
 				turn++;
@@ -136,7 +136,7 @@ public class Calculator
 			else
 			{
 				// Loss.
-				System.out.println("Turn " + turn + ": Lost $" + bet);
+				//System.out.println("Turn " + turn + ": Lost $" + bet);
 				money -= bet;
 				netEarnings -= bet;
 				bet *= multiplier;
@@ -151,10 +151,11 @@ public class Calculator
 		{
 			System.out.println("Out of turns! Round over.");
 		}
-		System.out.println("Final stats:");
-		System.out.println("\tNumber of turns: " + (turn - 1));
-		System.out.println("\tMoney remaining: $" + money);
-		System.out.println("\tNet earnings: $" + netEarnings);
+		//System.out.println("Final stats:");
+		//System.out.println("\tNumber of turns: " + (turn - 1));
+		//System.out.println("\tMoney remaining: $" + money);
+		System.out.println("Net earnings: $" + netEarnings);
+		return money;
 	}
 	
 }
