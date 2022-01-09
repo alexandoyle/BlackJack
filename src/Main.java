@@ -8,72 +8,91 @@ public class Main {
 	public static void main(String[] args) {new Main();}
 
 	Main() {
-
-		//Variables we want user to enter
-		double oddsOfWinning = .4222;
-		int startingBalance = 10000000;
-		int minimumBet = 10;
-
-
-		//These will not be changed
-		int numGames = 10000;
-		double totalNet = 0;
-		double multiplier = .9;
-		int numRounds = 1;
-		int maxTurns = 1;
-		int balance = 0;
-		boolean firstRound = true;
-		int numGamesSimulated = 0;
-		int numRoundsSimulated = 0;
 		
+//*******************************************
+//**    USER  INPUT  VARIABLES             **
+//*******************************************
+		double oddsOfWinning	= .4222;
+		int startingBalance	 	= 10000000;
+		int minimumBet 			= 10;
+		int numGames 			= 10000;
 
 
-		//Loop through different number of Rounds played before leaving the table
+//*******************************************
+//**    STARTING  VARIABLES                **
+//*******************************************
+		int numRounds 			= 1;
+		int maxTurns 			= 1;
+		int balance 			= 0;
+		int numGamesSimulated 	= 0;
+		int numRoundsSimulated	= 0;
+		
+		double totalNet 		= 0;
+		double multiplier 		= .9;
+		
+		boolean firstRound		= true;
+		
+		
+		
+//*********************************************************************************
+//**    LOOP  THROUGH  DIFFERENT  NUMBER  OF  ROUNDS  BEFORE  LEAVING  TABLE     **
+//*********************************************************************************
 		for (;numRounds <= 25; numRounds++) {
-
 			maxTurns = 1;
-			//Loop through different Max Turns per Round
+			
+			
+//*********************************************************************************
+//**        LOOP  THROUGH  DIFFERENT  NUMBER  OF  MAX  TURNS  PER  ROUND         **
+//*********************************************************************************
 			for (;maxTurns <= 10; maxTurns++) {
-
 				multiplier = .9;
-				//Loop Through Each Different Multiplier
+				
+				
+//*********************************************************************************
+//**    		LOOP  THROUGH  DIFFERENT  BET  MULTIPLIERS                       **
+//*********************************************************************************
 				for (;multiplier < 5; ) {
-
-
 					multiplier = multiplier + .1;
+					
 					//Round Decimal to nearest .1
 					DecimalFormat df = new DecimalFormat("#.#");      
 					multiplier = Double.valueOf(df.format(multiplier));
+					
 
-					//Beginning of Each Game (Walking up to a new BlackJack Table)
+//*********************************************************************************
+//**    			LOOP  THROUGH  NEW  GAME SIMULATIONS                         **
+//*********************************************************************************
 					for (int a = 0; a < numGames; a++) {
 						totalNet = 0;
 						balance = 0;
-
-
 						int nR = numRounds + 1;
+						
+						
+//*********************************************************************************
+//**    			    LOOP  THROUGH  NEW  ROUNDS  OF  BLACKJACK                **
+//*********************************************************************************					
 						for (int i = 1; i < nR; i++)
 						{
-
-
+							//First round of a new game
 							if (i == 1) {
+								
+								//Create Calculator Object
 								Calculator calc = new Calculator(minimumBet, startingBalance, multiplier, oddsOfWinning);
+								
 								//Update balance based on winnings/loss
 								balance = calc.runRound(maxTurns);
 								calc.setMoney(balance);
 								//System.out.println("Balance after round " + i + ": " + calc.getMoney());
 
-								//Display Starting info
+								//Display Starting Conditions
 								if (firstRound) {
 
 									firstRound = false;
 									System.out.println("Starting Balance: " + startingBalance);
 									System.out.println("Minimum Bet: " + minimumBet);
-									System.out.println("Number of Games Simulated: " + numGames);
-									//Calculate the Max Turns per Round
 									System.out.println("Max Turns Per Round: " + maxTurns);
 
-									//Calculate Odds of losing every turn
+									//Calculate Odds of Losing Every Turn
 									double cumOdds = calc.cumOddsForTurn(maxTurns);
 									double maxLossOdds = 1 - cumOdds;
 									double maxLossOddsPercentage = maxLossOdds * 100;
@@ -87,44 +106,53 @@ public class Main {
 									System.out.print("Odds of at least 1 max loss after " + numRounds + " total rounds: ");
 									System.out.printf("%.3f%% %n ",oddsOfAtLeastOneMaxLossPercentage);
 									System.out.println();
-									
+						
 								}
 							}
 
+							//All other rounds of a new game
 							else {
+								
+								//Create Calculator Object
 								Calculator calc = new Calculator(minimumBet, balance, multiplier, oddsOfWinning);
+								
 								//Update balance based on winnings/loss
 								balance = calc.runRound(maxTurns);
 								calc.setMoney(balance);
-								//System.out.println("Balance after round " + i + ": " + calc.getMoney());
+								
+					
 							}
-
-							//int maxTurns = calc.maxTurns();
+							
+							//Increase Number of Rounds simulated tracker
 							numRoundsSimulated++;
 
 						}
 
-						//System.out.println("Game: " + a + "\tNet:" + (balance - startingBalance));
+						//totalNet is used to find average net gain or loss after playing a bunch of time
 						totalNet += (balance - startingBalance);
 
 					}
 
+					//Calculate Average Net Win or Loss after playing x number of Games
 					double averageNet = totalNet / numGames;
 					DecimalFormat an = new DecimalFormat("#.########");      
 					averageNet = Double.valueOf(an.format(averageNet));
 
+					//Print to txt file to be sorted
 					System.out.printf("%.8f", averageNet);
 					System.out.print(" " + multiplier);
 					System.out.print(" " + numRounds);
 					System.out.print(" " + maxTurns);
 					System.out.println();
 					
+					//Increase Number of Games simulated tracker
 					numGamesSimulated += numGames;
 
 				}
 			}
 		}
 		
+		//Print Number of Games and Rounds Simulated
 		DecimalFormat commas = new DecimalFormat("#.#");   
 		commas.setGroupingUsed(true); 
 		commas.setGroupingSize(3);
