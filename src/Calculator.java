@@ -149,12 +149,12 @@ public class Calculator
 		}
 		else if(turn > t)
 		{
-			System.out.println("Out of turns! Round over.");
+			//System.out.println("Out of turns! Round over.");
 		}
 		//System.out.println("Final stats:");
 		//System.out.println("\tNumber of turns: " + (turn - 1));
 		//System.out.println("\tMoney remaining: $" + money);
-		System.out.println("Net earnings: $" + netEarnings);
+		//System.out.println("Net earnings: $" + netEarnings);
 		return money;
 	}
 	
