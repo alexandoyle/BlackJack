@@ -145,7 +145,7 @@ public class Calculator
 		}
 		if(bet > money)
 		{
-			System.out.println("Not enough money for the next turn! Round over.");
+			//System.out.println("Not enough money for the next turn! Round over.");
 		}
 		else if(turn > t)
 		{
