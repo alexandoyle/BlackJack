@@ -99,8 +99,6 @@ public class Main {
 								//System.out.println("Balance after round " + i + ": " + calc.getMoney());
 							}
 
-
-
 							//int maxTurns = calc.maxTurns();
 							numRoundsSimulated++;
 
@@ -124,10 +122,8 @@ public class Main {
 					numGamesSimulated += numGames;
 
 				}
-
 			}
 		}
-		
 		
 		DecimalFormat commas = new DecimalFormat("#.#");   
 		commas.setGroupingUsed(true); 
@@ -135,9 +131,6 @@ public class Main {
 		System.out.println();
 		System.out.println("Number of full games simulated: " + commas.format(numGamesSimulated));
 		System.out.println("Number of Rounds simulated: " + commas.format(numRoundsSimulated));
-		
-
-		
-	
+		System.out.println();
 	}
 }
