@@ -1,13 +1,17 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 
 public class Main {
 
-	public static void main(String[] args) {new Main();}
+	public static void main(String[] args) throws IOException {new Main();}
 
-	Main() {
+	Main() throws IOException {
+		
+		ReaderWriter rw = new ReaderWriter("test.txt");
+		rw.clearFile();
 		
 //*******************************************
 //**    USER  INPUT  VARIABLES             **
@@ -139,6 +143,8 @@ public class Main {
 					averageNet = Double.valueOf(an.format(averageNet));
 
 					//Print to txt file to be sorted
+					
+					rw.appendToFile(averageNet+" "+multiplier+" "+numRounds+" "+maxTurns);
 					System.out.printf("%.8f", averageNet);
 					System.out.print(" " + multiplier);
 					System.out.print(" " + numRounds);

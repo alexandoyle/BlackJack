@@ -30,4 +30,13 @@ public class ReaderWriter
 		writer.write(values);
 		writer.close();
 	}
+	
+	public void clearFile() throws IOException
+	{
+		FileWriter fw = new FileWriter(fileName, false); 
+		BufferedWriter writer = new BufferedWriter(fw);
+		writer.flush();
+		writer.close();
+		fw.close();
+	}
 }
