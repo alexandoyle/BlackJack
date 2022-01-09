@@ -94,7 +94,16 @@ public class Main {
 			}
 
 			double averageNet = totalNet / numGames;
-			System.out.println("Multiplier: " + multiplier + "\tAverage Net: " + averageNet);
+			DecimalFormat an = new DecimalFormat("#.########");      
+			averageNet = Double.valueOf(an.format(averageNet));
+			
+			System.out.printf("%.8f", averageNet);
+			System.out.print(" " + multiplier);
+			System.out.print(" " + numRounds);
+			System.out.print(" " + maxTurns);
+			
+			System.out.println();
+			
 
 
 
