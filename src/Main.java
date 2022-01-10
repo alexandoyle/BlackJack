@@ -14,7 +14,6 @@ public class Main {
 		
 		
 		ReaderWriter rw = new ReaderWriter("test.txt");
-		rw.clearFile();
 		
 //*******************************************
 //**    USER  INPUT  VARIABLES             **
@@ -178,6 +177,9 @@ public class Main {
 		long minutes = (milliseconds / 1000) / 60;
 		long seconds = (milliseconds / 1000) % 60;
 		milliseconds = milliseconds - (minutes * 60000) - (seconds * 1000);
+		
+		rw.topThree();
+		rw.printTopThree();
 		
 		System.out.print("Program Execution Time: ");
 		System.out.printf("%02d", minutes);
