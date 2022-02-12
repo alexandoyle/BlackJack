@@ -37,7 +37,7 @@ public class ReaderWriter
 		Scanner myScanner;
 		try 
 		{
-			File file = new File("C:\\Users\\micha\\git\\BlackJackJan9\\test.txt");
+			File file = new File("C:\\Users\\alexa\\git\\BlackJack\\test.txt");
 			myScanner = new Scanner(file);
 			double firstValue = 0, secondValue = 0, thirdValue = 0;
 			
