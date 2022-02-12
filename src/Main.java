@@ -42,7 +42,7 @@ public class Main {
 //*******************************************
 //**    USER INPUT                         **
 //*******************************************	
-		UserInput ui = new UserInput();
+		UserInput ui = new UserInput(oddsOfWinning, startingBalance, minimumBet, numGames);
 		ui.newInput();
 		
 		
@@ -102,10 +102,13 @@ public class Main {
 								if (firstRound) {
 
 									firstRound = false;
+									/**
 									System.out.println("Starting Balance: " + startingBalance);
 									System.out.println("Minimum Bet: " + minimumBet);
 									System.out.println("Max Turns Per Round: " + maxTurns);
+									**/
 
+									/**
 									//Calculate Odds of Losing Every Turn
 									double cumOdds = calc.cumOddsForTurn(maxTurns);
 									double maxLossOdds = 1 - cumOdds;
@@ -120,6 +123,8 @@ public class Main {
 									System.out.print("Odds of at least 1 max loss after " + numRounds + " total rounds: ");
 									System.out.printf("%.3f%% %n ",oddsOfAtLeastOneMaxLossPercentage);
 									System.out.println();
+									
+									**/
 						
 								}
 							}
