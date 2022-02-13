@@ -36,10 +36,11 @@ public class ReaderWriter
 	
 	public void topThree()
 	{
+		int xyz = 1;
 		Scanner myScanner;
 		try 
 		{
-			File file = new File("C:\\Users\\micha\\git\\BlackJack3\\test.txt");
+			File file = new File("C:\\Users\\alexa\\git\\BlackJack\\test.txt");
 			myScanner = new Scanner(file);
 			double firstValue = 0, secondValue = 0, thirdValue = 0;
 			
@@ -55,7 +56,9 @@ public class ReaderWriter
 					String[] splitLine = line.split(" ");
 					
 					//System.out.println(splitLine[0]);
-					
+				
+					//System.out.println(xyz + ": " + splitLine[0]);
+					//xyz++;
 					double net = Double.parseDouble(splitLine[0]);
 					
 					if(net > firstValue)
@@ -132,23 +135,23 @@ public class ReaderWriter
 						secondValue = firstValue;
 						firstValue = net;
 						
-						top3[2] = top3[1];
-						top3[1] = top3[0];
-						top3[0] = line;
+						bottom3[2] = bottom3[1];
+						bottom3[1] = bottom3[0];
+						bottom3[0] = line;
 					}
 					else if (net < secondValue)
 					{
 						thirdValue = secondValue;
 						secondValue = net;
 						
-						top3[2] = top3[1];
-						top3[1] = line;
+						bottom3[2] = bottom3[1];
+						bottom3[1] = line;
 					}
 					else if (net < thirdValue)
 					{
 						thirdValue = net;
 						
-						top3[2] = line;
+						bottom3[2] = line;
 					}
 				}
 				
@@ -164,6 +167,7 @@ public class ReaderWriter
 	
 	public void printBottomThree()
 	{
+		System.out.println();
 		System.out.println("Bottom 3 lines:");
 		System.out.println(bottom3[0]);
 		System.out.println(bottom3[1]);

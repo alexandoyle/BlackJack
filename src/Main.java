@@ -47,10 +47,11 @@ public class Main {
 		
 		
 		
-		
 //*********************************************************************************
 //**    LOOP  THROUGH  DIFFERENT  NUMBER  OF  ROUNDS  BEFORE  LEAVING  TABLE     **
 //*********************************************************************************
+		System.out.println("----------------------");
+		System.out.println("|| Simulating Games ||");
 		for (;numRounds <= 25; numRounds++) {
 			maxTurns = 1;
 			
@@ -160,11 +161,31 @@ public class Main {
 					//Print to txt file to be sorted
 					
 					rw.appendToFile(averageNet+" "+multiplier+" "+numRounds+" "+maxTurns);
+					System.out.print("\b \b");
 					System.out.printf("%.8f", averageNet);
 					System.out.print(" " + multiplier);
 					System.out.print(" " + numRounds);
 					System.out.print(" " + maxTurns);
-					System.out.println();
+					
+					
+					
+					System.out.print("\b \b");
+					/**
+					if (averageNet < 0) {
+						System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+					}
+					else 
+					{
+						System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+					}
+					
+					**/
+					
+					/**
+					int count = 1;
+					System.out.print(String.format("\033[%dA",count)); // Move up
+					System.out.print("\033[2K"); 
+					**/
 					
 					//Increase Number of Games simulated tracker
 					numGamesSimulated += numGames;
@@ -192,6 +213,9 @@ public class Main {
 		
 		rw.topThree();
 		rw.printTopThree();
+		
+		rw.bottomThree();
+		rw.printBottomThree();
 		
 		System.out.print("Program Execution Time: ");
 		System.out.printf("%02d", minutes);
